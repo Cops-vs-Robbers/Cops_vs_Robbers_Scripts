@@ -14,7 +14,7 @@ function setSendNotificationParams(title, text)
 end
 
 function teamMemberNumberCheck(team)
-  local number = #team:GetChildren()
+  local number = #team:GetPlayers()
   
   if number > 10 then
     return true
@@ -33,6 +33,7 @@ cops.MouseButton1Click:Connect(function() -- Listen for when the player clicks t
   else
     player.TeamColor = BrickColor.new("Navy blue")
     game.StarterGui:SetCore(SetCoreFunctions[1], setSendNotificationParams("Team Change", "You joined the Cops Team."))
+    game.ReplicatedStorage.PlayerTeamAssigned:FireServer({["Team"] = "Cops"})
     
   end
 end)
